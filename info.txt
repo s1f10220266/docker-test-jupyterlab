@@ -1,0 +1,11 @@
+moocs 2023/ソフトウェア演習II-03[Dockerイメージを作成してみよう]
+python:3.11-slimの公式イメージをもとにJupyter labを実行するDockerイメージを作成する
+練習のためpythonのイメージから自分で構築する
+
+手順
+作業用ディレクトリの作成
+Dockerfileを作成する
+requiewments.txtを作成する
+.dockerignoreファイルを作成する
+Dockerイメージをビルドする
+Dockerイメージからコンテナを実行する
