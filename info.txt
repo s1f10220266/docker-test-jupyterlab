@@ -3,9 +3,32 @@ python:3.11-slimの公式イメージをもとにJupyter labを実行するDocke
 練習のためpythonのイメージから自分で構築する
 
 手順
-作業用ディレクトリの作成
-Dockerfileを作成する
-requiewments.txtを作成する
-.dockerignoreファイルを作成する
-Dockerイメージをビルドする
-Dockerイメージからコンテナを実行する
+1. 作業用ディレクトリの作成
+2. Dockerfileを作成する
+3. requiewments.txtを作成する
+4. .dockerignoreファイルを作成する
+5. Dockerイメージをビルドする
+6. Dockerイメージからコンテナを実行する
+
+[5]以降に実行するコマンド
+$ docker image build -t jupyter-sample:latest ./
+    -> カレントディレクトリ下のDockerfileをもとにjupyter-sampleイメージをビルド
+$ docker container run -d -p 8888:8888 -v ./notebooks:/notebooks jupyter-sample
+    -> コンテナを起動 [-d]: バックグラウンドで起動 [-p]: 外部ポート8888/内部ポート8888 [-v]: ./noteboolsをコンテナ内の/notebooksからアクセス可能
+>> http://127.0.0.1:8888/ にアクセスするとjupyterlabが起動する
+>> 起動したjupyter内でフォルダを作ると自分の環境にも反映される
+
+コンテナの停止
+$ docker container ls 動作中のコンテナを確認
+$ docker container stop [コンテナID or コンテナ名] コンテナを停止
+$ docker container prune 停止中のコンテナをまとめて削除する
+
+Dockerfileを修正した場合
+    一度コンテナを停止する
+        $ docker container stop [コンテナ名 or コンテナID]
+    コンテナを削除する
+        $ docker container rm [コンテナ名 or コンテナID]
+    イメージの再ビルド
+        $ docker image build -t jupyter-sample:latest ./
+    コンテナを起動する
+        前述
